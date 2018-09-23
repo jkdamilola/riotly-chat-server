@@ -29,8 +29,6 @@ function socketIO(io) {
   io.use(socketAuth);
 
   io.on('connection', (socket) => {
-
-    console.log('connection socketIO', socket);
     socket.on('mount-chatroom', (chatroomId) => socket.join(chatroomId));
 
     socket.on('unmount-chatroom', (chatroomId) => socket.leave(chatroomId));
