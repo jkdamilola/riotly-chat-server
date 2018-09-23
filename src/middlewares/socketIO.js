@@ -9,7 +9,6 @@ const { sendMessage } = require('../chatroom/chatroom.controller');
 // Socket.IO Middleware for Auth
 function socketAuth(socket, next) {
   const { token } = socket.handshake.query;
-  console.log('socketAuth', token);
 
   if (!token) {
     return next(new APIError('Failed to authenticate socket', httpStatus.UNAUTHORIZED, true));
@@ -27,10 +26,11 @@ function socketAuth(socket, next) {
 }
 
 function socketIO(io) {
-  console.log('socketIOOOO', io);
   io.use(socketAuth);
 
   io.on('connection', (socket) => {
+
+    console.log('socketIOOOO', socket);
     socket.on('mount-chatroom', (chatroomId) => socket.join(chatroomId));
 
     socket.on('unmount-chatroom', (chatroomId) => socket.leave(chatroomId));
