@@ -2,7 +2,7 @@ FROM node:latest
 
 # set working directory
 RUN mkdir /usr/src/app
-WORKDIR /usr/src
+WORKDIR /usr/src/app
 
 # add `/usr/src/node_modules/.bin` to $PATH
 ENV PATH /usr/src/node_modules/.bin:$PATH
